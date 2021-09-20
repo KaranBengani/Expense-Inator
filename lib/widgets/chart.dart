@@ -34,9 +34,7 @@ class ExpenseChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      child: Card(
+    return Card(
         child: Container(
           padding: EdgeInsets.all(20),
           child: Row(
@@ -54,7 +52,7 @@ class ExpenseChart extends StatelessWidget {
         ),
         elevation: 5,
         margin: EdgeInsets.all(20),
-      ),
+      
     );
   }
 }

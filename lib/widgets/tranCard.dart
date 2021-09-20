@@ -10,9 +10,7 @@ class TranCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 400,
-      child: transactions.isEmpty
+    return transactions.isEmpty
           ? Column(
               children: [
                 SizedBox(
@@ -90,7 +88,6 @@ class TranCard extends StatelessWidget {
                 );
               },
               itemCount: transactions.length,
-            ),
     );
   }
 }

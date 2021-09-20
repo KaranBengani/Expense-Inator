@@ -54,8 +54,55 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+
+      final appbar = AppBar(
+      title: Text("Expense-Inator"),
+      actions: [
+        Builder(
+          builder: (context) => IconButton(
+            onPressed: () => _userInputPopup(context),
+            icon: Icon(
+              Icons.upload_file_sharp,
+            ),
+          ),
+        ),
+      ],
+    );
+
     return MaterialApp(
-      theme: ThemeData(
+      home: Scaffold(
+        appBar: appbar,
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                width: double.infinity,
+                height: (MediaQuery.of(context).size.height -
+                        appbar.preferredSize.height -
+                        MediaQuery.of(context).padding.top) *
+                    0.4,
+                child: ExpenseChart(_recentTrans),
+              ),
+              Container(
+                height: (MediaQuery.of(context).size.height -
+                        appbar.preferredSize.height -
+                        MediaQuery.of(context).padding.top) *
+                    0.6,
+                child: TranCard(_transactions, delTran),
+              ),
+            ],
+          ),
+        ),
+        floatingActionButton: Builder(
+          builder: (context) => FloatingActionButton(
+            onPressed: () => _userInputPopup(context),
+            child: Icon(Icons.upload_file_sharp),
+          ),
+        ),
+      ),
+       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
         accentColor: Colors.teal,
         fontFamily: "Opensans",
@@ -72,37 +119,6 @@ class _MyAppState extends State<MyApp> {
                     fontSize: 21,
                     fontWeight: FontWeight.w700),
               ),
-        ),
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Expense-Inator"),
-          actions: [
-            Builder(
-              builder: (context) => IconButton(
-                onPressed: () => _userInputPopup(context),
-                icon: Icon(
-                  Icons.upload_file_sharp,
-                ),
-              ),
-            ),
-          ],
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              ExpenseChart(_recentTrans),
-              TranCard(_transactions, delTran),
-            ],
-          ),
-        ),
-        floatingActionButton: Builder(
-          builder: (context) => FloatingActionButton(
-            onPressed: () => _userInputPopup(context),
-            child: Icon(Icons.upload_file_sharp),
-          ),
         ),
       ),
     );
