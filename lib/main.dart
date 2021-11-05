@@ -13,6 +13,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
   void _userInputPopup(BuildContext ctx) {
     showModalBottomSheet(
         context: ctx,
@@ -79,18 +80,19 @@ class _MyAppState extends State<MyApp> {
             children: <Widget>[
               Container(
                 width: double.infinity,
-                height: (MediaQuery.of(context).size.height -
-                        appbar.preferredSize.height -
-                        MediaQuery.of(context).padding.top) *
-                    0.4,
-                child: ExpenseChart(_recentTrans),
+                // height: (MediaQuery.of(context).size.height -
+                //         appbar.preferredSize.height -
+                //         MediaQuery.of(context).padding.top) *
+                //     0.4,
+                child: ExpenseChart(_recentTrans, appbar.preferredSize.height),
               ),
               Container(
-                height: (MediaQuery.of(context).size.height -
-                        appbar.preferredSize.height -
-                        MediaQuery.of(context).padding.top) *
-                    0.6,
-                child: TranCard(_transactions, delTran),
+                // height: ((MediaQuery.of(context).size.height -
+                //         appbar.preferredSize.height -
+                //         MediaQuery.of(context).padding.top) *
+                //     0.6),
+                child: TranCard(
+                    _transactions, delTran, appbar.preferredSize.height),
               ),
             ],
           ),

@@ -5,6 +5,7 @@ import '../widgets/charbar.dart';
 
 class ExpenseChart extends StatelessWidget {
   final List<Transaction> transactionList;
+  double size;
 
   List get chartDetails {
     return List.generate(7, (index) {
@@ -30,11 +31,16 @@ class ExpenseChart extends StatelessWidget {
   // }
   double totalSpending = 0.0;
 
-  ExpenseChart(this.transactionList);
+  ExpenseChart(this.transactionList, this.size);
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Container(
+      height: ((MediaQuery.of(context).size.height -
+              size -
+              MediaQuery.of(context).padding.top) *
+          0.3),
+      child: Card(
         child: Container(
           padding: EdgeInsets.all(20),
           child: Row(
@@ -42,7 +48,7 @@ class ExpenseChart extends StatelessWidget {
             children: chartDetails.map((e) {
               totalSpending += e["amount"];
 
-              return Flexible(
+                return Flexible(
                 fit: FlexFit.tight,
                 child: BarChart(e["day"], e["amount"],
                     totalSpending == 0.0 ? 0.0 : (e["amount"] / totalSpending)),
@@ -52,7 +58,8 @@ class ExpenseChart extends StatelessWidget {
         ),
         elevation: 5,
         margin: EdgeInsets.all(20),
-      
+        
+      ),
     );
   }
 }

@@ -5,12 +5,19 @@ import 'package:money_tracker/models/transactions.dart';
 class TranCard extends StatelessWidget {
   final List<Transaction> transactions;
   final Function delete;
+  double size;
 
-  TranCard(this.transactions, this.delete);
+  TranCard(this.transactions, this.delete, this.size);
 
   @override
   Widget build(BuildContext context) {
-    return transactions.isEmpty
+    return Container(
+      width: double.infinity,
+      height: ((MediaQuery.of(context).size.height -
+              size -
+              MediaQuery.of(context).padding.top) *
+          0.7),
+      child: transactions.isEmpty
           ? Column(
               children: [
                 SizedBox(
@@ -88,6 +95,7 @@ class TranCard extends StatelessWidget {
                 );
               },
               itemCount: transactions.length,
+      ),
     );
   }
 }
